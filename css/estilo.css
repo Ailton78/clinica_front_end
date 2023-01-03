@@ -63,6 +63,19 @@ main {
 .topo-links a:hover {
   color: #004b4c;
 }
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.mobile-menu div {
+  width: 32px;
+  height: 2px;
+  background: #fff;
+  margin: 8px;
+  transition: 0.3s;
+}
 /* Fim css Topo */
 
 #sobre,
@@ -72,7 +85,7 @@ main {
 }
 
 .box-visao-geral {
-  position: relative;
+  /* position: relative;*/
   background-image: url("/Assets/recepcao.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -148,12 +161,48 @@ footer .container {
 /*Fim css Rodapé*/
 
 /* Media Quaries */
-@media (max-width: 420px) {
-  .topo .container {
-    flex-direction: column;
+@media (max-width: 999px) {
+  body {
+    overflow-x: hidden;
   }
   .topo-links {
-    border-top: 1px solid #004b4c;
+    position: absolute;
+    top: 11vh;
+    right: 0;
+    width: 40vw;
+    height: 92vh;
+    background: #00cad1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in;
+  }
+  .topo-links a {
+    opacity: 0;
+  }
+  .mobile-menu {
+    display: block;
+  }
+  .topo-links.active {
+    transform: translateX(0);
+  }
+  @keyframes navLinkFade {
+    from {
+      opacity: 0;
+      transform: translateX(50);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+@media (max-width: 420px) {
+  /* .topo .container {
+    flex-direction: column;
+  }*/
+  .topo-links {
     justify-content: space-around;
     width: 100%;
   }
@@ -192,4 +241,13 @@ footer .container {
   .box-visao-geral {
     height: 400px;
   }
+}
+.mobile-menu.active .line1 {
+  transform: rotate(-45deg) translate(-8px, 8px);
+}
+.mobile-menu.active .line2 {
+  opacity: 0;
+}
+.mobile-menu.active .line3 {
+  transform: rotate(45deg) translate(-5px, -7px);
 }
